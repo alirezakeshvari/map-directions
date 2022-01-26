@@ -15,10 +15,13 @@ function errorLocation(errorLocation) {
 }
 
 function setupMap(center, zoom = 14) {
-  var map = new mapboxgl.Map({
+  const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
     center: center,
     zoom: zoom,
   });
+
+  const nav = new mapboxgl.NavigationControl();
+  map.addControl(nav);
 }
