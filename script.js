@@ -24,4 +24,10 @@ function setupMap(center, zoom = 14) {
 
   const nav = new mapboxgl.NavigationControl();
   map.addControl(nav);
+
+  var directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+  });
+
+  map.addControl(directions, "top-left");
 }
