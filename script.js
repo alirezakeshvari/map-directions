@@ -1,7 +1,24 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYWxpcmV6YWt2ciIsImEiOiJja3l2ZXlzd2gxd3NpMnBvM3hhd3JtYzdoIn0.hton60MqrEQ9Vg6-e_NzSg";
 
-var map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
+navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+  enableHighAccuracy: true,
 });
+
+function successLocation(position) {
+  setupMap([position.coords.longitude, position.coords.latitude]);
+}
+
+function errorLocation(errorLocation) {
+  console.log("Error: " + errorLocation.message);
+  setupMap([52.520007, 13.404954], 3);
+}
+
+function setupMap(center, zoom = 14) {
+  var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    center: center,
+    zoom: zoom,
+  });
+}
